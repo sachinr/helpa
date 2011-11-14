@@ -14,10 +14,12 @@ group :assets do
   gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'haml'
 end
 
 gem 'jquery-rails'
-
+gem "devise", "~> 1.5.0"
+gem 'devise-twitter'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -26,9 +28,11 @@ gem 'jquery-rails'
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
+group :development do
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem "awesome_print", "~> 0.4.0"
+end
 
 group :test do
   # Pretty printed test output
