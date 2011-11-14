@@ -1,16 +1,16 @@
 Helpa::Application.routes.draw do
+
+  devise_for :users
   devise_for :organizations
 
   namespace :admin do
     resources :organizations
   end
 
-  namespace :organization do
-    resources :projects
-  end
+  resource :organizations
+  resource :projects
 
-  devise_for :users
-  root :to => "home#index"
+  root :to => "static_page#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,5 +1,4 @@
-class Organization::ProjectsController < ApplicationController
-  before_filter :authenticate_organization!
+class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
