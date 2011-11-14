@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @organization.name %>
+</p>
+
+<p>
+  <b>Mission:</b>
+  <%= @organization.mission %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @organization.email %>
+</p>
+
+<p>
+  <b>Address1:</b>
+  <%= @organization.address1 %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%= @organization.address2 %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @organization.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_organization_path(@organization) %> |
+<%= link_to 'Back', organizations_path %>

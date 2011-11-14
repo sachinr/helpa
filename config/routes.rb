@@ -1,5 +1,13 @@
 Helpa::Application.routes.draw do
-  resources :projects
+  devise_for :organizations
+
+  namespace :admin do
+    resources :organizations
+  end
+
+  namespace :organization do
+    resources :projects
+  end
 
   devise_for :users
   root :to => "home#index"
