@@ -9,6 +9,7 @@ Helpa::Application.routes.draw do
 
   resource :organizations
   resource :projects
+  resource :dashboard, :controller => 'dashboard', :action => :index
 
   root :to => "static_page#index"
   # The priority is based upon order of creation:

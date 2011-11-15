@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114122901) do
+ActiveRecord::Schema.define(:version => 20111114132734) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,21 @@ ActiveRecord::Schema.define(:version => 20111114122901) do
   add_index "organizations", ["email"], :name => "index_organizations_on_email", :unique => true
   add_index "organizations", ["reset_password_token"], :name => "index_organizations_on_reset_password_token", :unique => true
 
+  create_table "profile_answers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "profile_question_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profile_questions", :force => true do |t|
+    t.string   "long_display"
+    t.string   "short_display"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "description"
@@ -59,6 +74,8 @@ ActiveRecord::Schema.define(:version => 20111114122901) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "region"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

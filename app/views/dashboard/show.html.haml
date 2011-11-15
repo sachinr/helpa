@@ -1,0 +1,6 @@
+%h1 Your Dashboard
+- if current_user
+  = render 'admin_dashboard' if current_user.admin
+  = render 'user_dashboard' if !current_user.admin
+- elsif current_organization
+  = render 'organization_dashboard'
