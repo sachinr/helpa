@@ -1,0 +1,26 @@
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Short Display</th>
+    <th>Long Display</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @profile_questions.each do |profile_question| %>
+  <tr>
+    <td><%= profile_question.short_display %></td>
+    <td><%= profile_question.long_display %></td>
+    <td><%= link_to 'Show', admin_profile_question_path(profile_question) %></td>
+    <td><%= link_to 'Edit', edit_admin_profile_question_path(profile_question) %></td>
+    <td><%= link_to 'Destroy', admin_profile_question_path(profile_question), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Profile Question', new_admin_profile_question_path %>
+
