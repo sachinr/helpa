@@ -1,2 +1,2 @@
-class ProfileQuestionsController < ApplicationController
+class Admin::ProfileQuestionsController < ApplicationController
 end

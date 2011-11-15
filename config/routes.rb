@@ -5,6 +5,7 @@ Helpa::Application.routes.draw do
 
   namespace :admin do
     resources :organizations
+    resources :profile_questions
   end
 
   resource :organizations
