@@ -6,4 +6,5 @@ class ProfileAnswer < ActiveRecord::Base
   validates_presence_of :score, :answerable_id, :profile_question_id
 
   attr_accessible :score, :answerable, :profile_question, :answerable_id, :answerable_type, :profile_question_id
+
 end

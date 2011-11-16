@@ -10,10 +10,12 @@ Helpa::Application.routes.draw do
 
   resources :projects
   resources :organizations
-  resource :dashboard, :controller => 'dashboard', :action => :index
+  resource :dashboard, :controller => 'dashboard', :action => :show
 
   match 'profile/' => 'profile#show', :via => :get
   match 'profile/' => 'profile#update', :via => :post
+
+  match 'suggested/' => 'project_user_scores#suggested_projects'
 
   root :to => "static_page#index"
   # The priority is based upon order of creation:
