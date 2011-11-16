@@ -1,0 +1,40 @@
+= form_for(@project) do |f|
+  - if @project.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@project.errors.count, "error")
+        prohibited this project from being saved:
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li
+            = msg
+
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+
+  .field
+    = f.label :description
+    %br
+    = f.text_field :description
+
+  .field
+    = f.label :start_date
+    %br
+    = f.text_field :start_date
+
+  .field
+    = f.label :end_date
+    %br
+    = f.text_field :end_date
+
+  .project_attributes
+    .h3 Which of the following are part of this project:
+    - @profile_questions.each do |question|
+      = check_box_tag :name => "question_id[#{question.id}]"
+      = label_tag question.short_display
+      %br
+
+  .actions
+    = f.submit

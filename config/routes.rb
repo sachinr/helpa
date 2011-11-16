@@ -8,9 +8,12 @@ Helpa::Application.routes.draw do
     resources :profile_questions
   end
 
-  resource :organizations
-  resource :projects
+  resources :projects
+  resources :organizations
   resource :dashboard, :controller => 'dashboard', :action => :index
+
+  match 'profile/' => 'profile#show', :via => :get
+  match 'profile/' => 'profile#update', :via => :post
 
   root :to => "static_page#index"
   # The priority is based upon order of creation:
