@@ -10,15 +10,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
-    @project = Project.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @project }
-    end
-  end
-
   def new
     @project = Project.new
     @profile_questions = ProfileQuestion.all
@@ -29,19 +20,20 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @profile_questions = ProfileQuestion.all
     @project = Project.find(params[:id])
   end
 
   def create
     @project = Project.new(params[:project])
-    debugger
     @project.organization = current_organization
     respond_to do |format|
-      if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+      if @project.save && @project.update_answers(params[:question_id].flatten.uniq)
+        format.html { redirect_to projects_path,
+                      notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new" }
+        format.html {  @profile_questions = ProfileQuestion.all; render action: "new" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -49,10 +41,10 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-
     respond_to do |format|
-      if @project.update_attributes(params[:project])
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+      if @project.update_attributes(params[:project]) && @project.update_answers(params[:question_id].flatten.uniq)
+        format.html { redirect_to edit_project_path(@project),
+                      notice: 'Project was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

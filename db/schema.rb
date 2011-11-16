@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115141630) do
+ActiveRecord::Schema.define(:version => 20111116083457) do
 
   create_table "organizations", :force => true do |t|
     t.string   "name"
@@ -37,11 +37,12 @@ ActiveRecord::Schema.define(:version => 20111115141630) do
   add_index "organizations", ["reset_password_token"], :name => "index_organizations_on_reset_password_token", :unique => true
 
   create_table "profile_answers", :force => true do |t|
-    t.integer  "user_id"
     t.integer  "profile_question_id"
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "answerable_id"
+    t.string   "answerable_type"
   end
 
   create_table "profile_questions", :force => true do |t|

@@ -32,7 +32,8 @@
   .project_attributes
     .h3 Which of the following are part of this project:
     - @profile_questions.each do |question|
-      = check_box_tag :name => "question_id[#{question.id}]"
+      - answered = !@project.profile_answers.find_by_profile_question_id(question.id).nil?
+      = check_box_tag "question_id[#{question.id}]", question.id, answered
       = label_tag question.short_display
       %br
 
