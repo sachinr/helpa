@@ -14,9 +14,8 @@
           = link_to project.name, project
           %br
           = "#{project.start_date} - #{project.attendees.find_by_user_id(current_user.id).accepted ? 'Accepted' : 'Awaiting acceptance'}"
-
     - else
-
+      You don't have any upcoming projects - start browsing the project listing to find something to do
 
   .span5
     %h2 Suggested Projects

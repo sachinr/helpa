@@ -4,7 +4,7 @@ module ApplicationHelper
     number_of_questions = ProfileQuestion.all.count
     high_score = number_of_questions * ProfileAnswer::HIGH_SCORE
     medium_score = number_of_questions * (ProfileAnswer::HIGH_SCORE/2)
-    score = project_user_score.score
+    score = project_user_score ? project_user_score.score : 0
 
     if score == 0
       return 'Average'

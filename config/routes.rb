@@ -1,6 +1,6 @@
 Helpa::Application.routes.draw do
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   devise_for :organizations
 
   namespace :admin do
