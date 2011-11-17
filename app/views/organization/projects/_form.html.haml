@@ -49,9 +49,8 @@
         %p
           Email:
           = attendee.user.email
-          = link_to "[approve]", :action => :accept_attendee, :user => attendee.user.id
-          = link_to "[x]", :action => :destroy_attendee
-
+          - unless attendee.accepted
+            = link_to "[approve]", :action => :accept_attendee, :user => attendee.user.id
 
   .actions
     = f.submit :class => 'btn primary'

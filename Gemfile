@@ -24,6 +24,7 @@ gem 'devise-twitter'
 gem 'pg'
 gem 'thin'
 gem 'heroku'
+gem 'icalendar'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -38,6 +39,7 @@ group :development do
 # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem "awesome_print", "~> 0.4.0"
+  gem "letter_opener"
 end
 
 group :test do

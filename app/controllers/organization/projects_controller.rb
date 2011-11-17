@@ -69,6 +69,7 @@ class Organization::ProjectsController < ApplicationController
       find_by_project_id_and_user_id(params[:id], params[:user])
     @attendee.accepted = true
     if @attendee.save
+      AttendeeMailer.accepted_email(@attendee.user, @attendee.project).deliver
       respond_to do |format|
         format.html { redirect_to request.referer  }
       end

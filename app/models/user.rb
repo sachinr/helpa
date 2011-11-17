@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :project_user_scores, :dependent => :destroy
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :region, :admin
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :region, :admin, :name
 
   def update_profile_answers(scores)
     ProfileQuestion.all.each do |question|
