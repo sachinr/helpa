@@ -1,4 +1,3 @@
-%h1 Your Dashboard
 - if current_user
   = render 'admin_dashboard' if current_user.admin
   = render 'user_dashboard' if !current_user.admin

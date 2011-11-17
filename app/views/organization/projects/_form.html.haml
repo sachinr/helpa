@@ -11,45 +11,47 @@
 
   .field
     = f.label :name
-    %br
-    = f.text_field :name
-
+    .input
+      = f.text_field :name
+  %br
   .field
     = f.label :description
-    %br
-    = f.text_field :description
-
+    .input
+      = f.text_field :description
+  %br
   .field
     = f.label :start_date
-    %br
-    = f.datetime_select :start_date
-
+    .input.date
+      = f.datetime_select :start_date
+  %br
   .field
     = f.label :end_date
-    %br
-    = f.datetime_select :end_date
-
+    .input.date
+      = f.datetime_select :end_date
+  %br
   .project_attributes
     .h3 Which of the following are part of this project:
-    - @profile_questions.each do |question|
-      - answered = !@project.profile_answers.find_by_profile_question_id(question.id).nil?
-      = check_box_tag "question_id[#{question.id}]", question.id, answered
-      = label_tag question.short_display
-      %br
+    .input
+      .input-list
+        - @profile_questions.each do |question|
+          - answered = !@project.profile_answers.find_by_profile_question_id(question.id).nil?
+          = check_box_tag "question_id[#{question.id}]", question.id, answered
+          %span
+            = question.short_display
+          %br
 
-  - if @attendees
+  - if @attendees && @attendees.length > 0
     .attendees
       %br
       %b
         Attendees
-      - if @attendees.length > 0
-        - @attendees.each do |attendee|
-          %p
-            Email:
-            = attendee.user.email
-            = link_to "[approve]", :action => :accept_attendee, :user => attendee.user.id
-            = link_to "[x]", :action => :destroy_attendee
+      - @attendees.each do |attendee|
+        %p
+          Email:
+          = attendee.user.email
+          = link_to "[approve]", :action => :accept_attendee, :user => attendee.user.id
+          = link_to "[x]", :action => :destroy_attendee
 
 
   .actions
-    = f.submit
+    = f.submit :class => 'btn primary'

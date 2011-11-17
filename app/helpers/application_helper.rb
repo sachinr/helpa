@@ -7,11 +7,11 @@ module ApplicationHelper
     score = project_user_score.score
 
     if score == 0
-      return 'Average compatibility'
+      return 'Average'
     elsif score > 0 && score <= medium_score
-      return 'Above average compatibility'
+      return 'Above average'
     elsif score <= high_score && score > medium_score
-      return 'High compatibilitiy'
+      return 'High'
     else
       return 'Not compatible'
     end

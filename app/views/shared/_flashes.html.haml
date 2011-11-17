@@ -1,0 +1,10 @@
+- unless flash.empty?
+  #flashes
+    #flash_holder
+      - flash.each do |key, value|
+        - class_type = case key.to_s
+        - when 'notice' then 'success'
+        %div{:id => key.to_s, :class => "alert-message #{class_type}"}
+          %p
+            = h value.html_safe
+

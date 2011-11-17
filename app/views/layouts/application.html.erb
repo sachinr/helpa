@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Helpa</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Helpa</title>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= render 'shared/user_nav'%>
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container-fluid">
 
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
+          <a class="brand" href="/">Helpa</a>
+            <%= render 'shared/main_nav'%>
+          <p class="pull-right">
+            <%= render 'shared/user_nav'%>
+          </p>
+        </div>
+      </div>
+    </div>
 
-<%= yield %>
-
-</body>
+    <div class="container">
+      <%= render 'shared/flashes'%>
+      <%= yield %>
+    </div>
+  </body>
 </html>

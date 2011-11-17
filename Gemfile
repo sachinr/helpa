@@ -17,6 +17,7 @@ group :assets do
   gem 'haml'
 end
 
+gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem "devise", "~> 1.5.0"
 gem 'devise-twitter'

@@ -36,8 +36,4 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def suggested
-    @project_user_scores = current_user.project_user_scores.order('score DESC')
-  end
-
 end

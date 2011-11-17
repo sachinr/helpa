@@ -1,11 +1,44 @@
-- total_questions = ProfileQuestion.all.count
-- user_answers = current_user.profile_answers.count
-%ul
-  %li
-    = link_to "Update my profile", profile_path
-  %li
-    = link_to 'Suggested projects', suggested_projects_path
-  %li
-    = link_to 'Browse all projects', projects_path
-  %li View my upcoming projects
-  %li View my past projects
+.hero-unit
+  %h1 Welcome to Helpa!
+  %p Answer a few short questions and we can start suggesting projects you might like
+  %br
+  %p
+    = link_to 'Update your profile »', profile_path, :class => 'btn primary large'
+
+.row
+  .span6
+    %h2 Upcoming Projects
+    - if current_user.projects.length > 0
+      - current_user.projects.each do |project|
+        %p
+          = link_to project.name, project
+          %br
+          = "#{project.start_date} - #{project.attendees.find_by_user_id(current_user.id).accepted ? 'Accepted' : 'Awaiting acceptance'}"
+
+    - else
+
+
+  .span5
+    %h2 Suggested Projects
+    - if @project_user_scores.length > 0
+      - @project_user_scores.each do |suggested|
+        %p
+          = link_to suggested.project.name, suggested.project
+          %br
+          %b
+            = "Compatibility: #{project_compatibility(suggested)}"
+          %br
+          = suggested.project.description
+    - else
+      %p No suggested projects yet. Please try updating your profile
+
+  .span5
+    %h2 Latest Projects
+    - if @projects.length > 0
+      - @projects.each do |project|
+        %p
+          = link_to project.name, project
+          %br
+          = project.description
+    - else
+      %p No projects have been added to Helpa yet

@@ -8,7 +8,7 @@ class ProfileController < ApplicationController
 
   def update
     if current_user.update_profile_answers(params['question_id'])
-      flash[:message] = 'Great Success!'
+      flash[:notice] = 'Great Success!'
     else
       flash[:error] = 'Something went wrong!'
     end

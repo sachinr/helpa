@@ -13,7 +13,7 @@
   = @project.end_date
 
 - unless @attendee
-  =button_to "Volunteer for this project", :action => "attend"
+  =button_to "Volunteer for this project", {:action => "attend"}, :class => 'btn primary'
 - else
   - if @attendee.accepted
     %p You have been approved as a volunteer
