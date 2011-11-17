@@ -1,4 +1,4 @@
-= form_for(@project) do |f|
+= form_for([:organization, @project]) do |f|
   - if @project.errors.any?
     #error_explanation
       %h2
@@ -22,12 +22,12 @@
   .field
     = f.label :start_date
     %br
-    = f.text_field :start_date
+    = f.date_select :start_date
 
   .field
     = f.label :end_date
     %br
-    = f.text_field :end_date
+    = f.date_select :end_date
 
   .project_attributes
     .h3 Which of the following are part of this project:
@@ -36,6 +36,20 @@
       = check_box_tag "question_id[#{question.id}]", question.id, answered
       = label_tag question.short_display
       %br
+
+  - if @attendees
+    .attendees
+      %br
+      %b
+        Attendees
+      - if @attendees.length > 0
+        - @attendees.each do |attendee|
+          %p
+            Email:
+            = attendee.user.email
+            = link_to "[approve]", :action => :accept_attendee, :user => attendee.user.id
+            = link_to "[x]", :action => :destroy_attendee
+
 
   .actions
     = f.submit

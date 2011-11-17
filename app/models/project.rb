@@ -2,6 +2,8 @@ class Project < ActiveRecord::Base
   belongs_to :organization
   has_many :profile_answers, :as => :answerable
   has_many :project_user_scores, :dependent => :destroy
+  has_many :attendees
+  has_many :users, :through => :attendees
 
   attr_accessible :name, :description, :equipment,
     :start_date, :end_date, :organization, :profile_answers_attributes

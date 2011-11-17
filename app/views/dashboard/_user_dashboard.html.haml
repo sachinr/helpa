@@ -1,9 +1,11 @@
+- total_questions = ProfileQuestion.all.count
+- user_answers = current_user.profile_answers.count
 %ul
   %li
-    = link_to 'Complete my profile', profile_path
+    = link_to "Update my profile", profile_path
   %li
-    = link_to 'Suggested projects', suggested_path
+    = link_to 'Suggested projects', suggested_projects_path
   %li
-    = link_to 'Browse all projects', #
+    = link_to 'Browse all projects', projects_path
   %li View my upcoming projects
   %li View my past projects

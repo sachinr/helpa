@@ -1,8 +1,8 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_organization!
+  before_filter :authenticate_user!
 
   def index
-    @projects = current_organization.projects.all
+    @projects = Project.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,56 +10,34 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def new
-    @project = Project.new
-    @profile_questions = ProfileQuestion.all
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @project }
-    end
-  end
-
-  def edit
-    @profile_questions = ProfileQuestion.all
+  def show
     @project = Project.find(params[:id])
+    @attendee = Attendee.
+      find_by_project_id_and_user_id(@project.id, current_user.id)
   end
 
-  def create
-    @project = Project.new(params[:project])
-    @project.organization = current_organization
-    respond_to do |format|
-      if @project.save && @project.update_answers(params[:question_id].flatten.uniq)
-        format.html { redirect_to projects_path,
-                      notice: 'Project was successfully created.' }
-        format.json { render json: @project, status: :created, location: @project }
-      else
-        format.html {  @profile_questions = ProfileQuestion.all; render action: "new" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
+
+  def attend
+    attendee = Attendee.new(:user_id => current_user.id,
+                            :project_id => params[:id])
+    if attendee.save
+      respond_to do |format|
+        format.html { redirect_to request.referer }
       end
     end
   end
 
-  def update
-    @project = Project.find(params[:id])
+  def destroy_attendee
+    @attendee =  Attendee.
+      find_by_project_id_and_user_id(params[:id], current_user.id)
+    @attendee.destroy
     respond_to do |format|
-      if @project.update_attributes(params[:project]) && @project.update_answers(params[:question_id].flatten.uniq)
-        format.html { redirect_to edit_project_path(@project),
-                      notice: 'Project was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to request.referer }
     end
   end
 
-  def destroy
-    @project = Project.find(params[:id])
-    @project.destroy
-
-    respond_to do |format|
-      format.html { redirect_to projects_url }
-      format.json { head :ok }
-    end
+  def suggested
+    @project_user_scores = current_user.project_user_scores.order('score DESC')
   end
+
 end

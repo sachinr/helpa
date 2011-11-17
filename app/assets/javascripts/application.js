@@ -7,3 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require selectToUISlider.jQuery
+//= require jquery-ui-1.7.1.custom.min
+//

@@ -1,8 +1,7 @@
 class Admin::ProfileQuestionsController < ApplicationController
 
   before_filter :require_admin
-  # GET /admin/profile_questions
-  # GET /admin/profile_questions.json
+
   def index
     @profile_questions = ProfileQuestion.all
 
@@ -12,8 +11,6 @@ class Admin::ProfileQuestionsController < ApplicationController
     end
   end
 
-  # GET /admin/profile_questions/1
-  # GET /admin/profile_questions/1.json
   def show
     @profile_question = ProfileQuestion.find(params[:id])
 
@@ -23,8 +20,6 @@ class Admin::ProfileQuestionsController < ApplicationController
     end
   end
 
-  # GET /admin/profile_questions/new
-  # GET /admin/profile_questions/new.json
   def new
     @profile_question = ProfileQuestion.new
 
@@ -34,13 +29,10 @@ class Admin::ProfileQuestionsController < ApplicationController
     end
   end
 
-  # GET /admin/profile_questions/1/edit
   def edit
     @profile_question = ProfileQuestion.find(params[:id])
   end
 
-  # POST /admin/profile_questions
-  # POST /admin/profile_questions.json
   def create
     @profile_question = ProfileQuestion.new(params[:profile_question])
 
@@ -55,8 +47,6 @@ class Admin::ProfileQuestionsController < ApplicationController
     end
   end
 
-  # PUT /admin/profile_questions/1
-  # PUT /admin/profile_questions/1.json
   def update
     @profile_question = ProfileQuestion.find(params[:id])
 
@@ -71,8 +61,6 @@ class Admin::ProfileQuestionsController < ApplicationController
     end
   end
 
-  # DELETE /admin/profile_questions/1
-  # DELETE /admin/profile_questions/1.json
   def destroy
     @profile_question = ProfileQuestion.find(params[:id])
     @profile_question.destroy

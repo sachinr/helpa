@@ -8,7 +8,26 @@ Helpa::Application.routes.draw do
     resources :profile_questions
   end
 
-  resources :projects
+  namespace :organization do
+    match 'profile/' => 'organizations#edit'
+
+    resources :projects do
+      member do
+        get :accept_attendee
+      end
+    end
+  end
+
+  resources :projects do
+    member do
+      post :attend
+      get :destroy_attendee
+    end
+    collection do
+      get :suggested
+    end
+  end
+
   resources :organizations
   resource :dashboard, :controller => 'dashboard', :action => :show
 

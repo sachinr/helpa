@@ -7,4 +7,5 @@ class ProfileAnswer < ActiveRecord::Base
 
   attr_accessible :score, :answerable, :profile_question, :answerable_id, :answerable_type, :profile_question_id
 
+  HIGH_SCORE = 2
 end

@@ -5,13 +5,12 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   has_many :profile_answers, :as => :answerable
-  has_many :projects
+  has_many :projects, :through => :attendees
+  has_many :attendees
   has_many :project_user_scores, :dependent => :destroy
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :region, :admin
-
-  after_save :update_project_user_score
 
   def update_profile_answers(scores)
     ProfileQuestion.all.each do |question|
@@ -21,7 +20,7 @@ class User < ActiveRecord::Base
       answer.answerable_type = 'User'
       return false unless answer.save!
     end
-    self.save
+    update_project_user_score
     return true
   end
 

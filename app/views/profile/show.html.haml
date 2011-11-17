@@ -1,8 +1,8 @@
 = form_tag do
   - @profile_questions.each do |question|
     - answer = ProfileAnswer.find_by_answerable_id_and_profile_question_id(current_user.id, question.id)
+    - score = answer ? answer.score : 0
     %p
       = label_tag question.long_display
-      = text_field_tag question.id, (answer.score if answer), :name => "question_id[#{question.id}]"
-
+      = select_tag question.id, options_for_select((-2..2), score), :name => "question_id[#{question.id}]"
   = submit_tag("Submit")

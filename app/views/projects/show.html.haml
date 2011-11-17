@@ -1,0 +1,25 @@
+%h1
+  = @project.name
+
+%p
+  = @project.description
+
+%p
+  %b Start date:
+  = @project.start_date
+
+%p
+  %b End date:
+  = @project.end_date
+
+- unless @attendee
+  =button_to "Volunteer for this project", :action => "attend"
+- else
+  - if @attendee.accepted
+    %p You have been approved as a volunteer
+  - else
+    %p Awaiting approval
+  = link_to 'Remove request', :action => 'destroy_attendee'
+
+
+

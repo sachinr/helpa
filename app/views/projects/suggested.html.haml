@@ -1,0 +1,8 @@
+%h1 Suggested Projects
+- @project_user_scores.each do |suggested|
+  - message = project_compatibility(suggested)
+  - if message != 'Not compatible'
+    = link_to suggested.project.name, suggested.project
+    = message
+  %br
+

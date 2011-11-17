@@ -21,13 +21,13 @@
     <td><%= organization.address1 %></td>
     <td><%= organization.address2 %></td>
     <td><%= organization.type %></td>
-    <td><%= link_to 'Show', organization %></td>
-    <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
-    <td><%= link_to 'Destroy', organization, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', admin_organization_path(organization) %></td>
+    <td><%= link_to 'Edit', edit_admin_organization_path(organization) %></td>
+    <td><%= link_to 'Destroy', admin_organization_path(organization), confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Organization', new_organization_path %>
+<%= link_to 'New Organization', new_admin_organization_path %>

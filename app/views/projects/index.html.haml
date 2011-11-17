@@ -2,28 +2,32 @@
 
 %table
   %tr
+    %th Organization
     %th Name
     %th Description
     %th Start Date
     %th End Date
-    %th
-    %th
+    %th Attending?
+    %th Compatibility
 
-- @projects.each do |project|
-  %tr
-    %td
-      = project.name
-    %td
-      = project.description
-    %td
-      = project.start_date
-    %td
-      = project.end_date
+  - @projects.each do |project|
+    %tr
+      %td
+        = project.organization.name
+      %td
+        = project.name
+      %td
+        = project.description
+      %td
+        = project.start_date
+      %td
+        = project.end_date
+      %td
+        - if attending = project.attendees.find_by_user_id(current_user.id)
+          = attending.accepted ? "Accepted" : "Awaiting acceptance"
+        - else
+          = link_to "Volunteer now!", attend_project_path(project), :method => :post
+      %td
+        = project_compatibility(current_user.project_user_scores.find_by_project_id(project))
 
-    %td
-      = link_to 'Edit', edit_project_path(project)
-    %td
-      = link_to 'Destroy', project, confirm: 'Are you sure?', method: :delete
-%br
 
-= link_to 'New Project', new_project_path
