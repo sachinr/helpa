@@ -1,8 +1,12 @@
+%h1 Update your profile
+
+%p Accurately answering the following questions allows us to suggest projects which you are more likely to enjoy working on
+
 = form_tag do
   - @profile_questions.each do |question|
     - answer = ProfileAnswer.find_by_answerable_id_and_profile_question_id(current_user.id, question.id)
     - score = answer ? answer.score : 0
     %p
       = label_tag question.long_display
-      = select_tag question.id, options_for_select((-2..2), score), :name => "question_id[#{question.id}]"
+      = select_tag question.id, options_for_select([['No',-2],['Preferably Not',-1],['Indifferent',0],["I don't mind",1], ['Yes', 2] ] , score), :name => "question_id[#{question.id}]", :class => 'slider'
   = submit_tag("Submit")

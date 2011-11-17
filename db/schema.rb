@@ -72,11 +72,11 @@ ActiveRecord::Schema.define(:version => 20111117091409) do
     t.string   "name"
     t.string   "description"
     t.string   "equipment"
-    t.string   "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "organization_id"
     t.date     "start_date"
+    t.date     "end_date"
   end
 
   create_table "suggested_users", :force => true do |t|
