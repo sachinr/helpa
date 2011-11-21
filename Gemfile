@@ -11,20 +11,19 @@ gem 'rails', '3.1.1'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'haml'
 end
 
+gem 'haml'
+gem 'coffee-rails', '~> 3.1.1'
 gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 gem "devise", "~> 1.5.0"
-gem 'devise-twitter'
 gem 'pg'
 gem 'thin'
 gem 'heroku'
 gem 'icalendar'
-
+gem 'sprockets'
 gem "omniauth-facebook"
 
 # To use ActiveModel has_secure_password
@@ -37,7 +36,7 @@ gem "omniauth-facebook"
 # gem 'capistrano'
 
 group :development do
-# To use debugger
+  # To use debugger
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem "awesome_print", "~> 0.4.0"
   gem "letter_opener"

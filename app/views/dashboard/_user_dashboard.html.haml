@@ -8,8 +8,8 @@
 .row
   .span6
     %h2 Upcoming Projects
-    - if current_user.projects.length > 0
-      - current_user.projects.each do |project|
+    - if @upcoming_attending_projects.length > 0
+      - @upcoming_attending_projects.each do |project|
         %p
           = link_to project.name, project
           %br
@@ -19,8 +19,8 @@
 
   .span5
     %h2 Suggested Projects
-    - if @project_user_scores.length > 0
-      - @project_user_scores.each do |suggested|
+    - if @upcoming_suggestions.length > 0
+      - @upcoming_suggestions.each do |suggested|
         %p
           = link_to suggested.project.name, suggested.project
           %br

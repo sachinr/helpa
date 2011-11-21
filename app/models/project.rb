@@ -33,6 +33,10 @@ class Project < ActiveRecord::Base
     return true
   end
 
+  def unapproved_attendees
+    self.users.where("accepted = 'FALSE' OR accepted IS NULL")
+  end
+
   private
 
   def update_project_user_score

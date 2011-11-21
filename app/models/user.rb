@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :profile_answers, :as => :answerable
   has_many :projects, :through => :attendees
-  has_many :attendees
+  has_many :attendees, :dependent => :destroy
   has_many :project_user_scores, :dependent => :destroy
 
   # Setup accessible (or protected) attributes for your model
@@ -29,8 +29,19 @@ class User < ActiveRecord::Base
     if user = User.find_by_email(data["email"])
       user
     else # Create a user with a stub password.
-      User.create!(:email => data["email"], :password => Devise.friendly_token[0,20])
+      User.create!(:email => data["email"], :name => data["name"], :password => Devise.friendly_token[0,20])
     end
+  end
+
+  def upcoming_suggested_projects
+    date_today = DateTime.now.strftime('%Y-%m-%d')
+    self.project_user_scores.joins(:project).order('score DESC').where("projects.end_date >= '#{date_today}'")
+  end
+
+  def upcoming_attending_projects
+    date_today = DateTime.now.strftime('%Y-%m-%d')
+    self.projects.where("start_date >= '#{date_today}'").
+    order('start_date ASC')
   end
 
   private
